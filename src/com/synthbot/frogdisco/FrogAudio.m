@@ -26,6 +26,20 @@
 extern JavaVM *FrogAudio_globalJvm;
 
 
+#pragma mark - Miscellaneous
+
+// set the endianness of the buffer by calling byteBuffer.order(ByteOrder.nativeOrder())
+void setByteOrder(jobject byteBuffer, JNIEnv *env) {
+  // set the endianness of the buffer by calling byteBuffer.order(ByteOrder.nativeOrder())
+  jobject nativeOrder = (*env)->CallStaticObjectMethod(env, (*env)->FindClass(env, "java/nio/ByteOrder"),
+      (*env)->GetStaticMethodID(env, (*env)->FindClass(env, "java/nio/ByteOrder"),
+          "nativeOrder", "()Ljava/nio/ByteOrder;"));
+  (*env)->CallObjectMethod(env, byteBuffer,
+      (*env)->GetMethodID(env, (*env)->FindClass(env, "java/nio/ByteBuffer"),
+          "order", "(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;"), nativeOrder);
+}
+
+
 #pragma mark - Render Callback
 
 void renderCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef inBuffer) {
@@ -51,12 +65,14 @@ void renderCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef in
         directByteBuffer = (*env)->NewDirectByteBuffer(env, inBuffer->mAudioData,
             inBuffer->mAudioDataBytesCapacity);
         directByteBuffer = (*env)->NewGlobalRef(env, directByteBuffer);
+        setByteOrder(directByteBuffer, env);
       } else if ((*env)->GetDirectBufferAddress(env, directByteBuffer) != inBuffer->mAudioData) {
         // in case the native audio buffer has changed (possible but very unlikely)
         (*env)->DeleteGlobalRef(env, directByteBuffer);
         directByteBuffer = (*env)->NewDirectByteBuffer(env, inBuffer->mAudioData,
             inBuffer->mAudioDataBytesCapacity);
         directByteBuffer = (*env)->NewGlobalRef(env, directByteBuffer);
+        setByteOrder(directByteBuffer, env);
       }
       
       // call to java to fill the short buffer
@@ -138,10 +154,12 @@ void renderCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef in
         (*env)->FindClass(env, "com/synthbot/frogdisco/FrogDisco"), "onCoreAudioFloatRenderCallback",
         "(Ljava/nio/ByteBuffer;)V");
     
+    directByteBuffer = nil;
     if (sampleFormat == UNINTERLEAVED_FLOAT) {
       float *buffer = (float *) calloc(outputChannels*blockSize, sizeof(float));
       directByteBuffer = (*env)->NewDirectByteBuffer(env, buffer, outputChannels*blockSize*sizeof(float));
       directByteBuffer = (*env)->NewGlobalRef(env, directByteBuffer);
+      setByteOrder(directByteBuffer, env);
     }
     
     // create the new audio buffer

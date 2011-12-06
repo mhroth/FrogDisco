@@ -21,7 +21,6 @@
 package com.synthbot.frogdisco;
 
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
 public class FrogDisco {
   
@@ -32,11 +31,14 @@ public class FrogDisco {
   /**
    * Multiple instances of <code>FrogDisco</code> may exist independently, with varying parameters.
    * Core Audio will automatically mix them together, though can be a performance penalty.
-   * @param numOutputChannels  
-   * @param blockSize
-   * @param sampleRate
-   * @param sampleFormat
-   * @param listener
+   * @param numOutputChannels The number of output channels. Usually 1 or 2. Must be positive.
+   * @param blockSize  The number of samples per channel. Must be a power of two, at least 128.
+   * @param sampleRate  The number of audio samples processed per second per channel. Must be either
+   * 22050.0 or 44100.0.
+   * @param sampleFormat  The sample format. Either <code>SampleFormat.INTERLEAVED_SHORT</code> or
+   * <code>SampleFormat.UNINTERLEAVED_FLOAT</code>.
+   * @param listener  The <code>CoreAudioRenderListener</code> which will receive render callbacks
+   * to process the audio buffers.
    */
   public FrogDisco(int numOutputChannels, int blockSize, double sampleRate, SampleFormat sampleFormat,
       CoreAudioRenderListener listener) {
@@ -100,12 +102,10 @@ public class FrogDisco {
   private native void pause(long ptr);
   
   private void onCoreAudioShortRenderCallback(ByteBuffer buffer) {
-    buffer.order(ByteOrder.nativeOrder()); // TODO(mhroth): move this to native code
     listener.onCoreAudioShortRenderCallback(buffer.asShortBuffer());
   }
   
   private void onCoreAudioFloatRenderCallback(ByteBuffer buffer) {
-    buffer.order(ByteOrder.nativeOrder()); // TODO(mhroth): move this to native code
     listener.onCoreAudioFloatRenderCallback(buffer.asFloatBuffer());
   }
 }
