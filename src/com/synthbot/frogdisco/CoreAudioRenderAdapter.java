@@ -20,18 +20,19 @@
 
 package com.synthbot.frogdisco;
 
-import java.util.Arrays;
+import java.nio.ShortBuffer;
+import java.nio.FloatBuffer;
 
 public class CoreAudioRenderAdapter implements CoreAudioRenderListener {
 
   @Override
-  public void onCoreAudioShortRenderCallback(short[] buffer) {
-//    Arrays.fill(buffer, 0);
+  public void onCoreAudioShortRenderCallback(ShortBuffer buffer) {
+    // nothing to do
   }
 
   @Override
-  public void onCoreAudioFloatRenderCallback(float[] buffer) {
-    Arrays.fill(buffer, 0.0f);
+  public void onCoreAudioFloatRenderCallback(FloatBuffer buffer) {
+    // nothing to do
   }
 
 }

@@ -20,26 +20,66 @@
 
 package com.synthbot.frogdisco;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 public class FrogDisco {
   
   private final long nativePtr;
   private final CoreAudioRenderListener listener;
+  private final SampleFormat sampleFormat;
   
   /**
-   * 
-   * @param numOutputChannels
+   * Multiple instances of <code>FrogDisco</code> may exist independently, with varying parameters.
+   * Core Audio will automatically mix them together, though can be a performance penalty.
+   * @param numOutputChannels  
    * @param blockSize
    * @param sampleRate
    * @param sampleFormat
    * @param listener
    */
-  public FrogDisco(int numOutputChannels, int blockSize, float sampleRate, SampleFormat sampleFormat,
+  public FrogDisco(int numOutputChannels, int blockSize, double sampleRate, SampleFormat sampleFormat,
       CoreAudioRenderListener listener) {
+    if (numOutputChannels < 0) {
+      throw new IllegalArgumentException("numOutputChannels must be positive.");
+    }
+    // TODO(mhroth): block size must be a power of two
+    if (!(sampleRate == 22050.0 || sampleRate == 44100.0)) {
+      // this is an arbitrary restriction, but these samples rates are definitely supported
+      throw new IllegalArgumentException("Only sample rates of 22050Hz and 44100Hz are currently supported.");
+    }
+    if (sampleFormat == null) {
+      throw new NullPointerException("Sample format may not be null.");
+    }
+    if (listener == null) {
+      throw new NullPointerException("CoreAudioRenderListener may not be null.");
+    }
+    
+    this.sampleFormat = sampleFormat;
     this.listener = listener;
-    nativePtr = initCoreAudio(sampleFormat.ordinal());
+    nativePtr = initCoreAudio(0, numOutputChannels, blockSize, sampleRate, sampleFormat.ordinal());
   }
   
-  private native long initCoreAudio(int sampleFormat);
+  private native long initCoreAudio(int numInputChannels, int numOutputChannels, int blockSize,
+      double sampleRate, int sampleFormat);
+  
+  static {
+    System.loadLibrary("FrogDisco");
+  }
+  
+  /**
+   * Automatically unloads the native component if not already done.
+   */
+  @Override
+  protected synchronized void finalize() throws Throwable {
+    try {
+      deallocCoreAudio(nativePtr);
+    } finally {
+      super.finalize();
+    }
+  }
+  
+  private native void deallocCoreAudio(long ptr);
   
   /**
    * Start or resume playback. The render callback is executed.
@@ -59,12 +99,13 @@ public class FrogDisco {
   
   private native void pause(long ptr);
   
-  private void onCoreAudioShortRenderCallback(short[] buffer) {
-    listener.onCoreAudioShortRenderCallback(buffer);
+  private void onCoreAudioShortRenderCallback(ByteBuffer buffer) {
+    buffer.order(ByteOrder.nativeOrder()); // TODO(mhroth): move this to native code
+    listener.onCoreAudioShortRenderCallback(buffer.asShortBuffer());
   }
   
-  private void onCoreAudioFloatRenderCallback(float[] buffer) {
-    listener.onCoreAudioFloatRenderCallback(buffer);
+  private void onCoreAudioFloatRenderCallback(ByteBuffer buffer) {
+    buffer.order(ByteOrder.nativeOrder()); // TODO(mhroth): move this to native code
+    listener.onCoreAudioFloatRenderCallback(buffer.asFloatBuffer());
   }
-
 }

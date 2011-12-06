@@ -1,0 +1,250 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		90AE08FE148E3D12006A61D7 /* FrogAudio.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AE08FC148E3D12006A61D7 /* FrogAudio.h */; };
+		90AE08FF148E3D12006A61D7 /* FrogAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AE08FD148E3D12006A61D7 /* FrogAudio.m */; };
+		90AE0901148E413D006A61D7 /* com_synthbot_frogdisco_FrogDisco.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AE0900148E413D006A61D7 /* com_synthbot_frogdisco_FrogDisco.h */; };
+		90AE0903148E416D006A61D7 /* com_synthbot_frogdisco_FrogDisco.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AE0902148E416D006A61D7 /* com_synthbot_frogdisco_FrogDisco.m */; };
+		90AE090C148E5849006A61D7 /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE090B148E5849006A61D7 /* JavaVM.framework */; };
+		90AE0917148E7B96006A61D7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE0916148E7B96006A61D7 /* Accelerate.framework */; };
+		90AE091A148E7BDA006A61D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE0919148E7BDA006A61D7 /* AudioToolbox.framework */; };
+		90AE091C148E7BE1006A61D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE091B148E7BE1006A61D7 /* AudioUnit.framework */; };
+		90AE091E148E7C12006A61D7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE091D148E7C12006A61D7 /* CoreFoundation.framework */; };
+		90AE0920148E801F006A61D7 /* libobjc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE091F148E801F006A61D7 /* libobjc.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		90AE08F4148E3CE9006A61D7 /* libFrogDisco.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFrogDisco.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		90AE08FC148E3D12006A61D7 /* FrogAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrogAudio.h; path = ../src/com/synthbot/frogdisco/FrogAudio.h; sourceTree = "<group>"; };
+		90AE08FD148E3D12006A61D7 /* FrogAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrogAudio.m; path = ../src/com/synthbot/frogdisco/FrogAudio.m; sourceTree = "<group>"; };
+		90AE0900148E413D006A61D7 /* com_synthbot_frogdisco_FrogDisco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = com_synthbot_frogdisco_FrogDisco.h; path = ../src/com/synthbot/frogdisco/com_synthbot_frogdisco_FrogDisco.h; sourceTree = "<group>"; };
+		90AE0902148E416D006A61D7 /* com_synthbot_frogdisco_FrogDisco.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = com_synthbot_frogdisco_FrogDisco.m; path = ../src/com/synthbot/frogdisco/com_synthbot_frogdisco_FrogDisco.m; sourceTree = "<group>"; };
+		90AE090B148E5849006A61D7 /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaVM.framework; path = System/Library/Frameworks/JavaVM.framework; sourceTree = SDKROOT; };
+		90AE0916148E7B96006A61D7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		90AE0919148E7BDA006A61D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		90AE091B148E7BE1006A61D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		90AE091D148E7C12006A61D7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		90AE091F148E801F006A61D7 /* libobjc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.dylib; path = usr/lib/libobjc.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		90AE08F1148E3CE9006A61D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90AE0920148E801F006A61D7 /* libobjc.dylib in Frameworks */,
+				90AE091E148E7C12006A61D7 /* CoreFoundation.framework in Frameworks */,
+				90AE091C148E7BE1006A61D7 /* AudioUnit.framework in Frameworks */,
+				90AE091A148E7BDA006A61D7 /* AudioToolbox.framework in Frameworks */,
+				90AE0917148E7B96006A61D7 /* Accelerate.framework in Frameworks */,
+				90AE090C148E5849006A61D7 /* JavaVM.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		90AE08E9148E3CE8006A61D7 = {
+			isa = PBXGroup;
+			children = (
+				90AE08FB148E3CFA006A61D7 /* Classes */,
+				90AE090D148E584F006A61D7 /* Frameworks */,
+				90AE091F148E801F006A61D7 /* libobjc.dylib */,
+				90AE08F5148E3CE9006A61D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		90AE08F5148E3CE9006A61D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				90AE08F4148E3CE9006A61D7 /* libFrogDisco.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		90AE08FB148E3CFA006A61D7 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				90AE0900148E413D006A61D7 /* com_synthbot_frogdisco_FrogDisco.h */,
+				90AE0902148E416D006A61D7 /* com_synthbot_frogdisco_FrogDisco.m */,
+				90AE08FC148E3D12006A61D7 /* FrogAudio.h */,
+				90AE08FD148E3D12006A61D7 /* FrogAudio.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		90AE090D148E584F006A61D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				90AE0916148E7B96006A61D7 /* Accelerate.framework */,
+				90AE091B148E7BE1006A61D7 /* AudioUnit.framework */,
+				90AE0919148E7BDA006A61D7 /* AudioToolbox.framework */,
+				90AE091D148E7C12006A61D7 /* CoreFoundation.framework */,
+				90AE090B148E5849006A61D7 /* JavaVM.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		90AE08F2148E3CE9006A61D7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90AE08FE148E3D12006A61D7 /* FrogAudio.h in Headers */,
+				90AE0901148E413D006A61D7 /* com_synthbot_frogdisco_FrogDisco.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		90AE08F3148E3CE9006A61D7 /* FrogDisco */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90AE08F8148E3CE9006A61D7 /* Build configuration list for PBXNativeTarget "FrogDisco" */;
+			buildPhases = (
+				90AE08F0148E3CE9006A61D7 /* Sources */,
+				90AE08F1148E3CE9006A61D7 /* Frameworks */,
+				90AE08F2148E3CE9006A61D7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FrogDisco;
+			productName = FrogDisco;
+			productReference = 90AE08F4148E3CE9006A61D7 /* libFrogDisco.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		90AE08EB148E3CE8006A61D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "-";
+			};
+			buildConfigurationList = 90AE08EE148E3CE8006A61D7 /* Build configuration list for PBXProject "FrogDisco" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 90AE08E9148E3CE8006A61D7;
+			productRefGroup = 90AE08F5148E3CE9006A61D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				90AE08F3148E3CE9006A61D7 /* FrogDisco */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		90AE08F0148E3CE9006A61D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90AE08FF148E3D12006A61D7 /* FrogAudio.m in Sources */,
+				90AE0903148E416D006A61D7 /* com_synthbot_frogdisco_FrogDisco.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		90AE08F6148E3CE9006A61D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		90AE08F7148E3CE9006A61D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		90AE08F9148E3CE9006A61D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		90AE08FA148E3CE9006A61D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		90AE08EE148E3CE8006A61D7 /* Build configuration list for PBXProject "FrogDisco" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90AE08F6148E3CE9006A61D7 /* Debug */,
+				90AE08F7148E3CE9006A61D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		90AE08F8148E3CE9006A61D7 /* Build configuration list for PBXNativeTarget "FrogDisco" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90AE08F9148E3CE9006A61D7 /* Debug */,
+				90AE08FA148E3CE9006A61D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 90AE08EB148E3CE8006A61D7 /* Project object */;
+}

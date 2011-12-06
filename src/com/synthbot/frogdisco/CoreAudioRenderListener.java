@@ -20,10 +20,13 @@
 
 package com.synthbot.frogdisco;
 
+import java.nio.ShortBuffer;
+import java.nio.FloatBuffer;
+
 public interface CoreAudioRenderListener {
   
-  public void onCoreAudioShortRenderCallback(short[] buffer);
+  public void onCoreAudioShortRenderCallback(ShortBuffer buffer);
   
-  public void onCoreAudioFloatRenderCallback(float[] buffer);
+  public void onCoreAudioFloatRenderCallback(FloatBuffer buffer);
 
 }
