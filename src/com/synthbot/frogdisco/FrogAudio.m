@@ -1,6 +1,6 @@
 /*
  *  Copyright 2011 Martin Roth (mhroth@gmail.com)
- * 
+ *
  *  This file is part of FrogDisco.
  *
  *  FrogDisco is free software: you can redistribute it and/or modify
@@ -8,11 +8,11 @@
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  JVstHost is distributed in the hope that it will be useful,
+ *  FrogDisco is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU Lesser General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU Lesser General Public License
  *  along with FrogDisco.  If not, see <http://www.gnu.org/licenses/>.
  *
@@ -64,15 +64,23 @@ void renderCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef in
       if (directByteBuffer == nil) {
         directByteBuffer = (*env)->NewDirectByteBuffer(env, inBuffer->mAudioData,
             inBuffer->mAudioDataBytesCapacity);
-        directByteBuffer = (*env)->NewGlobalRef(env, directByteBuffer);
         setByteOrder(directByteBuffer, env);
+        // create a ShortBuffer from the new ByteBuffer
+        directByteBuffer = (*env)->CallObjectMethod(env, directByteBuffer,
+            (*env)->GetMethodID(env, (*env)->FindClass(env, "java/nio/ByteBuffer"),
+                "asShortBuffer", "()Ljava/nio/ShortBuffer;"));
+        directByteBuffer = (*env)->NewGlobalRef(env, directByteBuffer);
       } else if ((*env)->GetDirectBufferAddress(env, directByteBuffer) != inBuffer->mAudioData) {
         // in case the native audio buffer has changed (possible but very unlikely)
         (*env)->DeleteGlobalRef(env, directByteBuffer);
         directByteBuffer = (*env)->NewDirectByteBuffer(env, inBuffer->mAudioData,
             inBuffer->mAudioDataBytesCapacity);
-        directByteBuffer = (*env)->NewGlobalRef(env, directByteBuffer);
         setByteOrder(directByteBuffer, env);
+        // create a ShortBuffer from the new ByteBuffer
+        directByteBuffer = (*env)->CallObjectMethod(env, directByteBuffer,
+            (*env)->GetMethodID(env, (*env)->FindClass(env, "java/nio/ByteBuffer"),
+                "asShortBuffer", "()Ljava/nio/ShortBuffer;"));
+        directByteBuffer = (*env)->NewGlobalRef(env, directByteBuffer);
       }
       
       // call to java to fill the short buffer
@@ -149,17 +157,21 @@ void renderCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef in
     
     mID_shortCallback = (*env)->GetMethodID(env, 
         (*env)->FindClass(env, "com/synthbot/frogdisco/FrogDisco"), "onCoreAudioShortRenderCallback",
-        "(Ljava/nio/ByteBuffer;)V");
+        "(Ljava/nio/ShortBuffer;)V");
     mID_floatCallback = (*env)->GetMethodID(env, 
         (*env)->FindClass(env, "com/synthbot/frogdisco/FrogDisco"), "onCoreAudioFloatRenderCallback",
-        "(Ljava/nio/ByteBuffer;)V");
+        "(Ljava/nio/FloatBuffer;)V");
     
     directByteBuffer = nil;
     if (sampleFormat == UNINTERLEAVED_FLOAT) {
       float *buffer = (float *) calloc(outputChannels*blockSize, sizeof(float));
       directByteBuffer = (*env)->NewDirectByteBuffer(env, buffer, outputChannels*blockSize*sizeof(float));
-      directByteBuffer = (*env)->NewGlobalRef(env, directByteBuffer);
       setByteOrder(directByteBuffer, env);
+      // create a FloatBuffer from the ByteBuffer
+      directByteBuffer = (*env)->CallObjectMethod(env, directByteBuffer,
+          (*env)->GetMethodID(env, (*env)->FindClass(env, "java/nio/ByteBuffer"),
+              "asFloatBuffer", "()Ljava/nio/FloatBuffer;"));
+      directByteBuffer = (*env)->NewGlobalRef(env, directByteBuffer);
     }
     
     // create the new audio buffer

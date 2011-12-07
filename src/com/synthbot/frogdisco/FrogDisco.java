@@ -20,7 +20,8 @@
 
 package com.synthbot.frogdisco;
 
-import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
 
 public class FrogDisco {
   
@@ -98,7 +99,7 @@ public class FrogDisco {
   /**
    * Start or resume playback. The render callback is executed.
    */
-  public void play() {
+  public synchronized void play() {
     play(nativePtr);
   }
   
@@ -107,7 +108,7 @@ public class FrogDisco {
   /**
    * Pauses playback. The render callback is no longer executed.
    */
-  public void pause() {
+  public synchronized void pause() {
     pause(nativePtr);
   }
 
@@ -135,11 +136,13 @@ public class FrogDisco {
         " sampleRate:" + sampleRate + " sampleFormat:" + sampleFormat.name();
   }
 
-  private void onCoreAudioShortRenderCallback(ByteBuffer buffer) {
-    listener.onCoreAudioShortRenderCallback(buffer.asShortBuffer());
+  private void onCoreAudioShortRenderCallback(ShortBuffer buffer) {
+    buffer.rewind();
+    listener.onCoreAudioShortRenderCallback(buffer);
   }
 
-  private void onCoreAudioFloatRenderCallback(ByteBuffer buffer) {
-    listener.onCoreAudioFloatRenderCallback(buffer.asFloatBuffer());
+  private void onCoreAudioFloatRenderCallback(FloatBuffer buffer) {
+    buffer.rewind();
+    listener.onCoreAudioFloatRenderCallback(buffer);
   }
 }
