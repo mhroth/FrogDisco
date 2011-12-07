@@ -1,6 +1,6 @@
 /*
  *  Copyright 2011 Martin Roth (mhroth@gmail.com)
- * 
+ *
  *  This file is part of FrogDisco.
  *
  *  FrogDisco is free software: you can redistribute it and/or modify
@@ -8,11 +8,11 @@
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  JVstHost is distributed in the hope that it will be useful,
+ *  FrogDisco is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU Lesser General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU Lesser General Public License
  *  along with FrogDisco.  If not, see <http://www.gnu.org/licenses/>.
  *
@@ -42,12 +42,12 @@ public class FrogDisco {
    */
   public FrogDisco(int numOutputChannels, int blockSize, double sampleRate, SampleFormat sampleFormat,
       CoreAudioRenderListener listener) {
-    if (numOutputChannels < 0) {
+    if (numOutputChannels <= 0) {
       throw new IllegalArgumentException("numOutputChannels must be positive.");
     }
     // TODO(mhroth): block size must be a power of two
     if (!(sampleRate == 22050.0 || sampleRate == 44100.0)) {
-      // this is an arbitrary restriction, but these samples rates are definitely supported
+      // this is an arbitrary restriction, but these sample rates are definitely supported
       throw new IllegalArgumentException("Only sample rates of 22050Hz and 44100Hz are currently supported.");
     }
     if (sampleFormat == null) {
