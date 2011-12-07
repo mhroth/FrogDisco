@@ -10,6 +10,8 @@ FrogDisco is similar in function to [JAsioHost](https://github.com/mhroth/jasioh
 
 FrogDisco comes in two parts, [FrogDisco.jar](https://github.com/mhroth/FrogDisco/blob/master/FrogDisco.jar) and [libFrogDisco.dylib](https://github.com/mhroth/FrogDisco/blob/master/libFrogDisco.dylib). The former is the usual encapsulation of the classes comprising the FD Java library, and the latter is the JNI interface to Core Audio. The package of FD is `com.synthbot.frogdisco`.
 
+The library can be quickly tested from the root directory of the project with `java -jar FrogDisco.jar -Djava.library.path=./`.
+
 + Include `FrogDisco.jar` in your Java project.
 + Make `libFrogDisco.dylib` available to your project. This can be done in several ways:
   + Move or copy the library to `/Library/Java/Extensions`. This is the default search location for JNI libraries.
