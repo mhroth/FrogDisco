@@ -8,7 +8,7 @@ FrogDisco is similar in function to [JAsioHost](https://github.com/mhroth/jasioh
 
 ## Getting Started
 
-FrogDisco comes in two parts, a JAR and [libFrogDisco.dylib](https://github.com/mhroth/FrogDisco/blob/master/libFrogDisco.dylib). The former is the usual encapsulation of the classes comprising the FD Java library, and the latter is the JNI interface to Core Audio.
+FrogDisco comes in two parts, [FrogDisco.jar](https://github.com/mhroth/FrogDisco/blob/master/FrogDisco.jar) and [libFrogDisco.dylib](https://github.com/mhroth/FrogDisco/blob/master/libFrogDisco.dylib). The former is the usual encapsulation of the classes comprising the FD Java library, and the latter is the JNI interface to Core Audio. The package of FD is `com.synthbot.frogdisco`.
 
 + Include `FrogDisco.jar` in your Java project.
 + Make `libFrogDisco.dylib` available to your project. This can be done in several ways:
