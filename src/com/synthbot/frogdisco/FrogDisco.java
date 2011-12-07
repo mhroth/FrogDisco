@@ -27,6 +27,9 @@ public class FrogDisco {
   private final long nativePtr;
   private final CoreAudioRenderListener listener;
   private final SampleFormat sampleFormat;
+  private final int numOutputChannels;
+  private final int blockSize;
+  private double sampleRate;
   
   /**
    * <code>FrogDisco</code> provides an interface to Core Audio from Java. Note that when instantiating
@@ -48,7 +51,10 @@ public class FrogDisco {
     if (numOutputChannels <= 0) {
       throw new IllegalArgumentException("numOutputChannels must be positive.");
     }
-    // TODO(mhroth): block size must be a power of two
+    if (blockSize <= 0) {
+      // TODO(mhroth): block size must be a power of two
+      throw new IllegalArgumentException("blockSize must be positive.");
+    }
     if (!(sampleRate == 22050.0 || sampleRate == 44100.0)) {
       // this is an arbitrary restriction, but these sample rates are definitely supported
       throw new IllegalArgumentException("Only sample rates of 22050Hz and 44100Hz are currently supported.");
@@ -60,6 +66,9 @@ public class FrogDisco {
       throw new NullPointerException("CoreAudioRenderListener may not be null.");
     }
     
+    this.numOutputChannels = numOutputChannels;
+    this.blockSize = blockSize;
+    this.sampleRate = sampleRate;
     this.sampleFormat = sampleFormat;
     this.listener = listener;
     nativePtr = initCoreAudio(0, numOutputChannels, blockSize, sampleRate, sampleFormat.ordinal());
@@ -101,13 +110,35 @@ public class FrogDisco {
   public void pause() {
     pause(nativePtr);
   }
-  
+
   private native void pause(long ptr);
-  
+
+  public int getNumOutputChannels() {
+    return numOutputChannels;
+  }
+
+  public int getBlockSize() {
+    return blockSize;
+  }
+
+  public double getSampleRate() {
+    return sampleRate;
+  }
+
+  public SampleFormat getSampleFormat() {
+    return sampleFormat;
+  }
+
+  @Override
+  public String toString() {
+    return super.toString() + " channels:" + numOutputChannels + " blockSize:" + blockSize +
+        " sampleRate:" + sampleRate + " sampleFormat:" + sampleFormat.name();
+  }
+
   private void onCoreAudioShortRenderCallback(ByteBuffer buffer) {
     listener.onCoreAudioShortRenderCallback(buffer.asShortBuffer());
   }
-  
+
   private void onCoreAudioFloatRenderCallback(ByteBuffer buffer) {
     listener.onCoreAudioFloatRenderCallback(buffer.asFloatBuffer());
   }
