@@ -29,8 +29,11 @@ public class FrogDisco {
   private final SampleFormat sampleFormat;
   
   /**
+   * <code>FrogDisco</code> provides an interface to Core Audio from Java. Note that when instantiating
+   * an instance of <code>FrodDisco</code> it may make several calls to the <code>CoreAudioRenderListener</code>
+   * in order to prebuffer the underlying <code>AudioQueue</code>s.
    * Multiple instances of <code>FrogDisco</code> may exist independently, with varying parameters.
-   * Core Audio will automatically mix them together, though can be a performance penalty.
+   * Core Audio will automatically mix them together, though there can be a performance penalty.
    * @param numOutputChannels The number of output channels. Usually 1 or 2. Must be positive.
    * @param blockSize  The number of samples per channel. Must be a power of two, at least 128.
    * @param sampleRate  The number of audio samples processed per second per channel. Must be either
