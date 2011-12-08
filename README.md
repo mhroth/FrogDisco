@@ -21,7 +21,7 @@ If the JVM cannot find the dylib, an [UnsatisfiedLinkError](http://docs.oracle.c
 
 ## Example
 
-Below are the contents of [ExampleFrogDisco.java](https://github.com/mhroth/FrogDisco/blob/master/src/com/synthbot/frogdisco/ExampleFrogDisco.java) which shows how to use the FD API (it's really simple!). The example instantiates an instance of FrogDisco and registers itself as the `CoreAudioRenderListener`. FD is created with one output channel, a block size of 128 samples per channel per block, and a sample rate of 44100. `ExampleFrogDisco` implements one of the two callback functions, in this case `onCoreAudioFloatRenderCallback` because the sample format `UNINTERLEAVED_FLOAT` is specified. Whenever Core Audio needs more samples, the render callback is called and the listener must fill the `ByteBuffer`, or in this case a `FloatBuffer`.
+Below are the contents of [ExampleFrogDisco.java](https://github.com/mhroth/FrogDisco/blob/master/src/com/synthbot/frogdisco/ExampleFrogDisco.java) which shows how to use the FD API (it's really simple!). The example instantiates an instance of FrogDisco and registers itself as the `CoreAudioRenderListener`. FD is created with one output channel, a block size of 128 samples per channel per block, and a sample rate of 44100. `ExampleFrogDisco` implements one of the two callback functions, in this case `onCoreAudioFloatRenderCallback` because the sample format `UNINTERLEAVED_FLOAT` is specified. Whenever Core Audio needs more samples, the render callback is called and the listener must fill the `ByteBuffer`, or in this case a `FloatBuffer`. Four audio buffers are used in the underlying audio queue. This is a typical value; as few as one may be specified. The larger the number the less the liklihood of audio underruns.
 
 ```Java
 package com.synthbot.frogdisco;
@@ -34,7 +34,7 @@ public class ExampleFrogDisco extends CoreAudioRenderAdapter {
   private FrogDisco frogDisco;
   
   public ExampleFrogDisco() {
-    frogDisco = new FrogDisco(1, 128, 44100.0, SampleFormat.UNINTERLEAVED_FLOAT, this);
+    frogDisco = new FrogDisco(1, 128, 44100.0, SampleFormat.UNINTERLEAVED_FLOAT, 4, this);
   }
   
   public void play() {
