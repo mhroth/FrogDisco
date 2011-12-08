@@ -126,10 +126,10 @@ void renderCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef in
 
 #pragma mark - PdAudio
 
-#define NUM_AUDIO_BUFFERS 5
 - (id)initWithInputChannels:(NSUInteger)inputChannels outputChannels:(NSUInteger)outputChannels
     blockSize:(NSUInteger)framesPerBlock sampleRate:(Float64)aSampleRate
-    sampleFormat:(SampleFormat)aSampleFormat javaObject:(jobject)jobj andEnv:(JNIEnv *)env {
+    sampleFormat:(SampleFormat)aSampleFormat numAudioBuffers:(NSUInteger)numAudioBuffers
+    javaObject:(jobject)jobj andEnv:(JNIEnv *)env {
   self = [super init];
   if (self != nil) {
     numInputChannels = inputChannels;
@@ -181,7 +181,7 @@ void renderCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef in
     
     // create three audio buffers to go into the new queue and initialise them
     AudioQueueBufferRef outBuffer;
-    for (int i = 0; i < NUM_AUDIO_BUFFERS; i++) {
+    for (int i = 0; i < numAudioBuffers; i++) {
       err = AudioQueueAllocateBuffer(outAQ, outAsbd.mBytesPerFrame*(UInt32)blockSize, &outBuffer);
       renderCallback(self, outAQ, outBuffer);
     }

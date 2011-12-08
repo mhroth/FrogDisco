@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     com_synthbot_frogdisco_FrogDisco
  * Method:    initCoreAudio
- * Signature: (IIIDI)J
+ * Signature: (IIIDII)J
  */
 JNIEXPORT jlong JNICALL Java_com_synthbot_frogdisco_FrogDisco_initCoreAudio
-  (JNIEnv *, jobject, jint, jint, jint, jdouble, jint);
+  (JNIEnv *, jobject, jint, jint, jint, jdouble, jint, jint);
 
 /*
  * Class:     com_synthbot_frogdisco_FrogDisco

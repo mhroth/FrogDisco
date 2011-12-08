@@ -30,7 +30,8 @@ public class FrogDisco {
   private final SampleFormat sampleFormat;
   private final int numOutputChannels;
   private final int blockSize;
-  private double sampleRate;
+  private final double sampleRate;
+  private final int numAudioBuffers;
   
   /**
    * <code>FrogDisco</code> provides an interface to Core Audio from Java. Note that when instantiating
@@ -44,11 +45,13 @@ public class FrogDisco {
    * 22050.0 or 44100.0.
    * @param sampleFormat  The sample format. Either <code>SampleFormat.INTERLEAVED_SHORT</code> or
    * <code>SampleFormat.UNINTERLEAVED_FLOAT</code>.
+   * @param numAudioBuffers  The number of audio buffers to use in the underlying audio queue. A
+   * good value is 4. Must be positive.
    * @param listener  The <code>CoreAudioRenderListener</code> which will receive render callbacks
    * to process the audio buffers.
    */
   public FrogDisco(int numOutputChannels, int blockSize, double sampleRate, SampleFormat sampleFormat,
-      CoreAudioRenderListener listener) {
+      int numAudioBuffers, CoreAudioRenderListener listener) {
     if (numOutputChannels <= 0) {
       throw new IllegalArgumentException("numOutputChannels must be positive.");
     }
@@ -63,6 +66,9 @@ public class FrogDisco {
     if (sampleFormat == null) {
       throw new NullPointerException("Sample format may not be null.");
     }
+    if (numAudioBuffers <= 0) {
+      throw new IllegalArgumentException("Number of audio buffers must be positive.");
+    }
     if (listener == null) {
       throw new NullPointerException("CoreAudioRenderListener may not be null.");
     }
@@ -71,12 +77,14 @@ public class FrogDisco {
     this.blockSize = blockSize;
     this.sampleRate = sampleRate;
     this.sampleFormat = sampleFormat;
+    this.numAudioBuffers = numAudioBuffers;
     this.listener = listener;
-    nativePtr = initCoreAudio(0, numOutputChannels, blockSize, sampleRate, sampleFormat.ordinal());
+    nativePtr = initCoreAudio(0, numOutputChannels, blockSize, sampleRate, sampleFormat.ordinal(),
+        numAudioBuffers);
   }
   
   private native long initCoreAudio(int numInputChannels, int numOutputChannels, int blockSize,
-      double sampleRate, int sampleFormat);
+      double sampleRate, int sampleFormat, int numAudioBuffers);
   
   static {
     System.loadLibrary("FrogDisco");
@@ -129,11 +137,32 @@ public class FrogDisco {
   public SampleFormat getSampleFormat() {
     return sampleFormat;
   }
+  
+  public int getNumAudioBuffer() {
+    return numAudioBuffers;
+  }
 
   @Override
   public String toString() {
     return super.toString() + " channels:" + numOutputChannels + " blockSize:" + blockSize +
-        " sampleRate:" + sampleRate + " sampleFormat:" + sampleFormat.name();
+        " sampleRate:" + sampleRate + " sampleFormat:" + sampleFormat.name() + " numAudioBuffers:"
+        + numAudioBuffers;
+  }
+  
+  @Override
+  public boolean equals(Object o) {
+    if (o != null) {
+      if (o.getClass().equals(getClass())) {
+        FrogDisco frogDisco = (FrogDisco) o;
+        return frogDisco.nativePtr == nativePtr;
+      }
+    }
+    return false;
+  }
+  
+  @Override
+  public int hashCode() {
+    return new Long(nativePtr).hashCode();
   }
 
   private void onCoreAudioShortRenderCallback(ShortBuffer buffer) {

@@ -32,12 +32,13 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) {
 
 JNIEXPORT jlong JNICALL Java_com_synthbot_frogdisco_FrogDisco_initCoreAudio
     (JNIEnv *env, jobject jobj, jint numInputChannels, jint numOutputChannels, jint blockSize,
-    jdouble sampleRate, jint sampleFormat) {
+    jdouble sampleRate, jint sampleFormat, jint numAudioBuffers) {
   FrogAudio *frogAudio = nil;
   @autoreleasepool {
     frogAudio = [[FrogAudio alloc]
         initWithInputChannels:numInputChannels outputChannels:numOutputChannels blockSize:blockSize
-        sampleRate:sampleRate sampleFormat:sampleFormat javaObject:jobj andEnv:env];
+        sampleRate:sampleRate sampleFormat:sampleFormat numAudioBuffers:numAudioBuffers
+        javaObject:jobj andEnv:env];
   }
   return (jlong) frogAudio;
 }

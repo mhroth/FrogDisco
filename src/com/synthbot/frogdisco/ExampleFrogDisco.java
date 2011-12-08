@@ -29,7 +29,7 @@ public class ExampleFrogDisco extends CoreAudioRenderAdapter {
   private FrogDisco frogDisco;
   
   public ExampleFrogDisco() {
-    frogDisco = new FrogDisco(1, 128, 44100.0, SampleFormat.UNINTERLEAVED_FLOAT, this);
+    frogDisco = new FrogDisco(1, 128, 44100.0, SampleFormat.UNINTERLEAVED_FLOAT, 4, this);
   }
   
   public void play() {

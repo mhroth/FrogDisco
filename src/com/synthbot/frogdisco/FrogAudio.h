@@ -46,7 +46,8 @@ typedef enum SampleFormat {
 
 - (id)initWithInputChannels:(NSUInteger)inputChannels outputChannels:(NSUInteger)outputChannels
     blockSize:(NSUInteger)framesPerBlock sampleRate:(Float64)sampleRate
-    sampleFormat:(SampleFormat)sampleFormat javaObject:(jobject)jobj andEnv:(JNIEnv *)env;
+    sampleFormat:(SampleFormat)sampleFormat numAudioBuffers:(NSUInteger)numAudioBuffers
+    javaObject:(jobject)jobj andEnv:(JNIEnv *)env;
 
 - (void)play;
 - (void)pause;
