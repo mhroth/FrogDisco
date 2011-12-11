@@ -15,8 +15,8 @@
 		90AE0917148E7B96006A61D7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE0916148E7B96006A61D7 /* Accelerate.framework */; };
 		90AE091A148E7BDA006A61D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE0919148E7BDA006A61D7 /* AudioToolbox.framework */; };
 		90AE091C148E7BE1006A61D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE091B148E7BE1006A61D7 /* AudioUnit.framework */; };
-		90AE091E148E7C12006A61D7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE091D148E7C12006A61D7 /* CoreFoundation.framework */; };
 		90AE0920148E801F006A61D7 /* libobjc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AE091F148E801F006A61D7 /* libobjc.dylib */; };
+		90FF0D4C14956D23002F4BED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FF0D4B14956D23002F4BED /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +29,8 @@
 		90AE0916148E7B96006A61D7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		90AE0919148E7BDA006A61D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		90AE091B148E7BE1006A61D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
-		90AE091D148E7C12006A61D7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		90AE091F148E801F006A61D7 /* libobjc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.dylib; path = usr/lib/libobjc.dylib; sourceTree = SDKROOT; };
+		90FF0D4B14956D23002F4BED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +39,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90AE0920148E801F006A61D7 /* libobjc.dylib in Frameworks */,
-				90AE091E148E7C12006A61D7 /* CoreFoundation.framework in Frameworks */,
+				90FF0D4C14956D23002F4BED /* Foundation.framework in Frameworks */,
 				90AE091C148E7BE1006A61D7 /* AudioUnit.framework in Frameworks */,
 				90AE091A148E7BDA006A61D7 /* AudioToolbox.framework in Frameworks */,
 				90AE0917148E7B96006A61D7 /* Accelerate.framework in Frameworks */,
@@ -85,7 +85,7 @@
 				90AE0916148E7B96006A61D7 /* Accelerate.framework */,
 				90AE091B148E7BE1006A61D7 /* AudioUnit.framework */,
 				90AE0919148E7BDA006A61D7 /* AudioToolbox.framework */,
-				90AE091D148E7C12006A61D7 /* CoreFoundation.framework */,
+				90FF0D4B14956D23002F4BED /* Foundation.framework */,
 				90AE090B148E5849006A61D7 /* JavaVM.framework */,
 			);
 			name = Frameworks;
@@ -182,7 +182,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -202,7 +202,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				SDKROOT = macosx;
 			};
 			name = Release;
