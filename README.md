@@ -43,6 +43,10 @@ public class ExampleFrogDisco extends CoreAudioRenderAdapter {
   
   @Override
   public void onCoreAudioFloatRenderCallback(FloatBuffer buffer) {
+    /*
+     * Put your audio code here.
+     * This example produces a 440Hz sine wave.
+     */
     int length = buffer.capacity();
     for (int i = 0; i < length; i++, sampleIndex++) {
       buffer.put((float) Math.sin(2.0 * Math.PI * 440.0 * sampleIndex / 44100.0));
